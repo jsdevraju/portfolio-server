@@ -16,7 +16,7 @@ export const createPortfolio = catchAsyncError(async (req, res, next) => {
 
 // Get All Portfolio
 export const getAllPortfolio = catchAsyncError(async (req, res, next) => {
-  const portfolio = await Portfolio.find();
+  const portfolio = await Portfolio.find({});
 
   res.status(200).json({
     message: "Successfully",
