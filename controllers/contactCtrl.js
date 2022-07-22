@@ -7,13 +7,16 @@ export const sendMessage = catchAsyncError(async (req, res, next) => {
   const { name, email, subject, message } = req.body;
 
   if (name?.length < 3 || name?.length > 15)
-    return next(new ErrorHandler("Name at least 3 or longer 15 characters", 400));
+    return next(
+      new ErrorHandler("Name at least 3 or longer 15 characters", 400)
+    );
   if (subject?.length < 10 || subject?.length > 50)
     return next(
       new ErrorHandler("Subject at least 10 or longer 50 characters", 400)
     );
 
-    if(message?.length < 50 || message?.length > 400) return next(
+  if (message?.length < 50 || message?.length > 400)
+    return next(
       new ErrorHandler("Message at least 50 or longer 400 characters", 400)
     );
 
@@ -93,5 +96,12 @@ export const sendMessage = catchAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     message: "true",
+  });
+});
+
+export const allMessage = catchAsyncError(async (req, res, next) => {
+  const messages = await Contact.find({});
+  res.status(200).json({
+    messages,
   });
 });

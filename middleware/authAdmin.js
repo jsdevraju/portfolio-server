@@ -6,7 +6,7 @@ import Admin from "../models/adminSchema.js";
 export const authAdmin = catchAsyncError(async (req, res, next) => {
   const token =
     req.headers.authorization?.split("Bearer ")[1] || req.cookies.token;
-
+  console.log(`token`, req.cookies)
   if (!token) return next(new ErrorHandler("Invalid authorization token", 400));
 
   const decoedData = jwt.verify(token, process.env.JWT_SECRET);
