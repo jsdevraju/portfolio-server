@@ -18,14 +18,17 @@ app.use(cookieParser());
 // Import ALl Route
 import authRoute from './routes/authRoute.js';
 import projectRoute from './routes/projectRoute.js';
-import skillRoute from './routes/skillRoute.js';
 import experienceRoute from './routes/exprienceRoute.js';
 import portfolioRoute from './routes/portfolioRoute.js';
 import contactRoute from './routes/contactRoute.js';
 
+// test api
+app.get("/", (req, res) => {
+    res.send("Hello test")
+})
+
 app.use("/api/v1", authRoute);
 app.use("/api/v1", projectRoute);
-app.use("/api/v1", skillRoute);
 app.use("/api/v1", experienceRoute);
 app.use("/api/v1", portfolioRoute);
 app.use("/api/v1", contactRoute);
